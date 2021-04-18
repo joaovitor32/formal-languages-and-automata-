@@ -45,5 +45,6 @@ if __name__=="__main__":
     initial_state = input('Initial state:')
     exit_state = input('Exit State:')
 
+    #M: (S,alfa,initial_state,exit_state,transitions), neste caso os inputs serão advindos do usuário
     MEF = Finite_State_Machine(states,initial_state,exit_state,transition_function)
     MEF.execute()
