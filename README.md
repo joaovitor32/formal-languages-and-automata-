@@ -1,4 +1,5 @@
 <h4>Códigos desenvolvidos para a matéria Linguagens Formais e Automatos</h4>
+<h3>Máquina de Estados Finitos e Simulador de Turing</h3>
 
 ##### Como Utilizar Este Repositório
 
@@ -9,6 +10,12 @@ Versão Ubuntu utilizada: 18.04.1
 
 ```
 https://github.com/joaovitor32/Linguagens-Formais-e-Automatos
+```
+
+MEF:
+
+```
+cd ./MEF
 pip3.6 install -r requirements.txt
 python3.6 MEF.py
 ```
