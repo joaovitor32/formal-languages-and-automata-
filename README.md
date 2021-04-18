@@ -9,7 +9,7 @@ Versão do Python utilizada: 3.6<br>
 Versão Ubuntu utilizada: 18.04.1
 
 ```
-https://github.com/joaovitor32/Linguagens-Formais-e-Automatos
+git clone https://github.com/joaovitor32/Linguagens-Formais-e-Automatos
 ```
 
 MEF:
