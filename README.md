@@ -4,7 +4,7 @@
 
 Para utilizar este repositório é necessário que se tenha instalado python >= 3.6. Os comandos abaixo farão o necessário para a instalação das dependências e execução do programa.
 
-Versão do Python utilizada: 3.6
+Versão do Python utilizada: 3.6<br>
 Versão Ubuntu utilizada: 18.04.1
 
 ```
