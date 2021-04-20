@@ -8,6 +8,15 @@ class State:
         self.output = output
         self.transitions = [input0,input1]
 
+    def get_state(self):
+        return self.state
+    
+    def get_transitions(self):
+        return self.transitions
+    
+    def get_output(self):
+        return self.output
+
 class Finite_State_Machine:
     def __init__(self,states):
         self.states = [] 
@@ -24,13 +33,13 @@ class Finite_State_Machine:
 
         outputString = ''
         str_array = list(self.input_string)
-        resp = self.initial_state.state
+        resp = self.initial_state.get_state()
 
         while len(str_array)>0:
             input_pop = str_array.pop(0)
             response =  self.states[[i.state for i in self.states].index(resp)]
-            resp = self.acceptor(response.transitions,input_pop)
-            outputString += str(response.output)
+            resp = self.acceptor(response.get_transitions(),input_pop)
+            outputString += str(response.get_output())
         
         return outputString
             
