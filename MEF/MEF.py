@@ -29,14 +29,15 @@ class Finite_State_Machine:
     def acceptor(self,valids,input_pop):
         if not len(valids) is not 0:
             return 'Parece que chegamos ao estado final'
-        return str(list(valids)[int(input_pop)][1])
+
+        return self.states[[j.get_state() for j in self.states].index(str(list(valids)[int(input_pop)][1]))]
 
     #Function that follows the trajectory related to states and inputs
     def transition_function(self):
 
         outputString = ''
         str_array = list(self.input_string)
-        resp = self.initial_state.get_state()
+        resp = self.initial_state
 
         '''
             Every iteration the first input of array is 
@@ -44,11 +45,11 @@ class Finite_State_Machine:
             which one is the next state based on the
             transitions array prop of every State object.
         '''
-        
-        outputString += self.states[[j.get_state() for j in self.states].index(resp)].get_output()
+
+        outputString += self.states[self.states.index(resp)].get_output()
         while len(str_array)>0:
             input_pop = str_array.pop(0)
-            response =  self.states[[j.get_state() for j in self.states].index(resp)]
+            response =  self.states[self.states.index(resp)]
             resp = self.acceptor(response.get_transitions(),input_pop)
             outputString += response.get_output()
         
