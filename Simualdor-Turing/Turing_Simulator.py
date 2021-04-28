@@ -22,20 +22,28 @@ class Turing_Simulator:
     def get_state_object(self,inp,state):
         return [j for j in self.quintuples if (j.get_state() == state and j.get_input() == inp)][0]
 
+    def show_tape(self):
+        return 1
+
     #Function to give response after a tape is fullfiled
     def execute(self,initial_state,input_string):
         initial_blank, final_blank = Tape().start_tape(input_string)
 
         tape_cell = initial_blank.prox
         head = self.get_state_object(0,initial_state)
-        list_str = list(input_string)
+        list_str = list(map(int,input_string))
 
         for inp in list_str:
             tape_cell.value = head.get_output()
-            next_state = head.get_prox()
-            selected_quintuple = self.get_state_object(int(inp),next_state)
+            
+            if head.get_direction() == "R":
+                tape_cell=tape_cell.get_prox()
+            elif head.get_direction() == "L":
+                tape_cell=tape_cell.get_previous()
 
-            return
+            next_state = head.get_prox()
+            head = self.get_state_object(inp,next_state)
+            print(head.get_output())
 
     #Function to start application - get Initial State and Input string
     def start(self): 
