@@ -44,15 +44,15 @@ class Turing_Simulator:
             head = self.get_state_object(inp,next_state)
             
             current.set_value(head.get_output())
-            next_state = head.get_prox()
 
             if head.get_direction() == "R":
                 current = current.get_prox()
             elif head.get_direction() == "L":
                 current = current.get_previous()
-            
-            if current == final_blank:    
-                cell = Tape().create_cell(current.get_previous(),final_blank,None)
+        
+            '''
+            if current.get_prox() == final_blank:    
+                cell = Tape().create_cell(current,final_blank,None)
                 current.set_prox(cell)
                 final_blank.set_previous(cell)
                 current = current.get_prox()
@@ -66,7 +66,10 @@ class Turing_Simulator:
                 current = current.get_previous()
                 current.set_value(self.get_state_object(inp,head.get_prox()).get_output())
                 break
-        
+            '''
+            
+            next_state = head.get_prox()
+
         self.show_tape(tape_cell,final_blank)
 
     #Function to start application - get Initial State and Input string
