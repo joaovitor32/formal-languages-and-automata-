@@ -50,24 +50,29 @@ class Turing_Simulator:
             elif head.get_direction() == "L":
                 current = current.get_previous()
         
-            '''
+            
             if current.get_prox() == final_blank:    
-                cell = Tape().create_cell(current,final_blank,None)
-                current.set_prox(cell)
-                final_blank.set_previous(cell)
+                last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
+                new_end_value = self.get_state_object(head.get_output(),last_state).get_output()
+
+                new_end_cell = Tape().create_cell(current,final_blank,None)
+                current.set_prox(new_end_cell)
+                final_blank.set_previous(new_end_cell)
                 current = current.get_prox()
-                current.set_value(self.get_state_object(inp,head.get_prox()).get_output())
+                current.set_value(new_end_value)
                 break                
         
-            if current == initial_blank:
-                cell = Tape().create_cell(initial_blank,current,None)
-                current.set_previous(cell)
-                initial_blank.set_previous(cell)
+            if current.get_previous() == initial_blank:
+                last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
+                new_start_value = self.get_state_object(head.get_output(),last_state).get_output()
+
+                new_start_cell = Tape().create_cell(initial_blank,current,None)
+                current.set_previous(new_start_cell)
+                initial_blank.set_previous(new_start_cell)
                 current = current.get_previous()
-                current.set_value(self.get_state_object(inp,head.get_prox()).get_output())
+                current.set_value(new_start_value)
                 break
-            '''
-            
+
             next_state = head.get_prox()
 
         self.show_tape(tape_cell,final_blank)
