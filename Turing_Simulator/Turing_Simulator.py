@@ -25,20 +25,23 @@ class Turing_Simulator:
 
     #Function to show Tape
     def show_tape(self,initial,final):
+        output = "Tape: Primeira Célula ->"
         while initial is not final:
-            print(initial.get_value())
+            output+=str(initial.get_value())
             initial = initial.get_prox()
+        print(output)
 
     #Function to give response after a tape is fullfiled
     #tape_cell.set_value does not work e tem algum erro 
     def execute(self,initial_state,input_string):
         initial_blank, final_blank = Tape().start_tape(input_string)
 
+        quintuples_route = []
         tape_cell = initial_blank.get_prox()
         current = tape_cell
     
         next_state = initial_state
-        while ((current is not final_blank) and (initial_blank is not current)): 
+        while True: 
             
             inp = current.get_value()
             head = self.get_state_object(inp,next_state)
@@ -50,6 +53,12 @@ class Turing_Simulator:
             elif head.get_direction() == "L":
                 current = current.get_previous()
         
+            if current.get_prox() == final_blank or current.get_previous() == initial_blank:
+                break
+            '''
+            MEF representada como Simulador de Turing, segundo visto em aula
+            a parte do slide utilizada para fazer está parte do código
+            está incorreta ou não é possível.
             
             if current.get_prox() == final_blank:    
                 last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
@@ -72,7 +81,7 @@ class Turing_Simulator:
                 current = current.get_previous()
                 current.set_value(new_start_value)
                 break
-
+            '''
             next_state = head.get_prox()
 
         self.show_tape(tape_cell,final_blank)
