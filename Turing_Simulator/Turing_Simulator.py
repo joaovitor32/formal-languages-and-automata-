@@ -20,7 +20,7 @@ class Turing_Simulator:
             self.quintuples.append(quintuple)
 
     #Function to pick an quintuple from quintuples list
-    def get_state_object(self,inp,state):
+    def transition_function(self,inp,state):
         return [j for j in self.quintuples if (j.get_state() == state and j.get_input() == inp)][0]
 
     #Function to show Tape
@@ -44,7 +44,7 @@ class Turing_Simulator:
         while True: 
             
             inp = current.get_value()
-            head = self.get_state_object(inp,next_state)
+            head = self.transition_function(inp,next_state)
             
             current.set_value(head.get_output())
 
@@ -55,11 +55,13 @@ class Turing_Simulator:
         
             if current.get_prox() == final_blank or current.get_previous() == initial_blank:
                 break
+
             '''
             MEF representada como Simulador de Turing, segundo visto em aula
             a parte do slide utilizada para fazer está parte do código
+
             está incorreta ou não é possível.
-            
+
             if current.get_prox() == final_blank:    
                 last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
                 new_end_value = self.get_state_object(head.get_output(),last_state).get_output()
@@ -82,6 +84,7 @@ class Turing_Simulator:
                 current.set_value(new_start_value)
                 break
             '''
+
             next_state = head.get_prox()
 
         self.show_tape(tape_cell,final_blank)
