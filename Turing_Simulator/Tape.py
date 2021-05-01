@@ -1,3 +1,4 @@
+
 from Cell import Cell
 
 class Tape:
@@ -9,18 +10,17 @@ class Tape:
         first_cell = Cell(self.start,None,inputs[0])
         end_cell = Cell(None,self.end,inputs[len(inputs)-1])
 
-        self.start.prox = first_cell
-        self.end.previous = end_cell
+        self.start.set_prox(first_cell)
+        self.end.set_previous(end_cell)
 
-        current = self.start.prox
+        current = first_cell
         for inp in inputs[1:-1]:
-            new_cell = Cell(None,current,inp)
-            current.prox = new_cell
-            new_cell.previous = current
+            new_cell = Cell(current,None,inp)
+            current.set_prox(new_cell)
             current = current.prox
-    
-        current.prox  = end_cell
-        end_cell.previous = current
+        
+        current.set_prox(end_cell)
+        end_cell.set_previous(current)
         
         return [self.start,self.end]
 

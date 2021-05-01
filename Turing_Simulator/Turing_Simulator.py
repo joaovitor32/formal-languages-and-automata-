@@ -1,3 +1,4 @@
+
 import pandas as pd
 import inquirer
 
@@ -12,16 +13,24 @@ class Turing_Simulator:
         for row in quintuples.iterrows():
             quintuple = Quintuple(
                 row[1]['state'],
-                int(row[1]['input']),
-                int(row[1]['output']),
+                row[1]['input'],
+                row[1]['output'],
                 row[1]['next'],
                 row[1]['direction'],
             )
             self.quintuples.append(quintuple)
 
+    #Function to check if state exists
+    def check_existence(self,state):
+        return [j for j in self.quintuples if (j.get_state() == state)]
+
     #Function to pick an quintuple from quintuples list
     def transition_function(self,inp,state):
-        return [j for j in self.quintuples if (j.get_state() == state and j.get_input() == inp)][0]
+        try:
+            return [j for j in self.quintuples if (j.get_state() == state and str(j.get_input()) == str(inp))][0]
+        except ValueError:
+            print("Estado não encontrado na lista de Quintuplas")
+
 
     #Function to show Tape
     def show_tape(self,initial,final):
@@ -41,53 +50,40 @@ class Turing_Simulator:
         current = tape_cell
     
         next_state = initial_state
+
+        # None = blank, ou seja espaços brancos da memória
         while True: 
-            
+    
             inp = current.get_value()
+            
             head = self.transition_function(inp,next_state)
             
-            current.set_value(head.get_output())
-
-            if head.get_direction() == "R":
-                current = current.get_prox()
-            elif head.get_direction() == "L":
-                current = current.get_previous()
-        
-            if current.get_prox() == final_blank or current.get_previous() == initial_blank:
-                break
-
-            '''
-            MEF representada como Simulador de Turing, segundo visto em aula
-            a parte do slide utilizada para fazer está parte do código
-
-            está incorreta ou não é possível.
-
-            if current.get_prox() == final_blank:    
-                last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
-                new_end_value = self.get_state_object(head.get_output(),last_state).get_output()
-
+            if current.get_prox() == final_blank:
                 new_end_cell = Tape().create_cell(current,final_blank,None)
                 current.set_prox(new_end_cell)
                 final_blank.set_previous(new_end_cell)
-                current = current.get_prox()
-                current.set_value(new_end_value)
-                break                
-        
-            if current.get_previous() == initial_blank:
-                last_state = self.get_state_object(head.get_output(),head.get_state()).get_prox()
-                new_start_value = self.get_state_object(head.get_output(),last_state).get_output()
-
+            
+            '''
+            if current.get_previous == initial_blank:
                 new_start_cell = Tape().create_cell(initial_blank,current,None)
                 current.set_previous(new_start_cell)
                 initial_blank.set_previous(new_start_cell)
-                current = current.get_previous()
-                current.set_value(new_start_value)
-                break
             '''
+
+            current.set_value(head.get_output())
+
+            if head.get_direction() == "R":              
+                current = current.get_prox()
+            elif head.get_direction() == "L":
+                current = current.get_previous()
 
             next_state = head.get_prox()
 
-        self.show_tape(tape_cell,final_blank)
+            if len(self.check_existence(next_state)) == 0:
+                print("Algum extremo da Tape foi acessado, parando execução da Máquina")
+                break
+
+        self.show_tape(tape_cell,final_blank.get_previous())
 
     #Function to start application - get Initial State and Input string
     def start(self): 
@@ -97,11 +93,10 @@ class Turing_Simulator:
             try:
                 question = [inquirer.List('prompt',message="Deseja continuar?",choices=[options[0][0],options[1][0]])]
                 main = options[[i[0] for i in options].index(inquirer.prompt(question)['prompt'])][1]
-                
+                                
                 if not main:
                     break
         
-
                 initial_state =  input('Initial state:')    
                 input_string = input('Input string:')
                 self.execute(initial_state,input_string)

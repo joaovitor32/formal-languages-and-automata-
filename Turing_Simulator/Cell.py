@@ -5,7 +5,7 @@ class Cell:
         self.value = value
     
     def get_value(self):
-        return int(self.value)
+        return self.value
 
     def set_value(self,value):
         self.value = value
