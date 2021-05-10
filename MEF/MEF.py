@@ -27,9 +27,8 @@ class Finite_State_Machine:
 
     #Function to determine the next state based on input
     def acceptor(self,valids,input_pop):
-        if not len(valids) is not 0:
+        if not len(valids) !=0:
             return 'Parece que chegamos ao estado final'
-
         return self.states[[j.get_state() for j in self.states].index(str(list(valids)[int(input_pop)][1]))]
 
     #Function that follows the trajectory related to states and inputs
@@ -47,7 +46,7 @@ class Finite_State_Machine:
         '''
 
         outputString += self.states[self.states.index(resp)].get_output()
-        while len(str_array)>0:
+        while len(str_array) != 0:
             input_pop = str_array.pop(0)
             response =  self.states[self.states.index(resp)]
             resp = self.acceptor(response.get_transitions(),input_pop)
@@ -66,6 +65,7 @@ class Finite_State_Machine:
                 
                 if not main:
                     break
+
         
                 print("Estados existentes:",[i.state for i in self.states])
                 self.initial_state =  self.states[[i.state for i in self.states].index(input('Initial state:'))]    
@@ -73,7 +73,7 @@ class Finite_State_Machine:
                 self.execute()
 
             except KeyboardInterrupt:
-                print("\n Algm erro aparentemente aconteceu")
+                print("\n Algum erro aparentemente aconteceu")
                 sys.exit(0)
     
     #Function to give response after a trajectory is made
