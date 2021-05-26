@@ -19,3 +19,11 @@ cd ./MEF
 pip3.6 install -r requirements.txt
 python3.6 MEF.py
 ```
+
+Turing_Simulator:
+
+```
+cd ./Turing_Simulator
+pip3.6 install -r requirements.txt
+python3.6 MEF.py
+```
