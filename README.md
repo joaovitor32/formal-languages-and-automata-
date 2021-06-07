@@ -10,20 +10,31 @@ Versão Ubuntu utilizada: 18.04.1
 
 ```
 git clone https://github.com/joaovitor32/Linguagens-Formais-e-Automatos
+cd ./formal-languages-and-automata-
 ```
 
 MEF:
 
 ```
 cd ./MEF
-pip3.6 install -r requirements.txt
-python3.6 MEF.py
+python3.9 setup.py install --prefix="/home/{verify the path}"
+python3.9 src/__init__.py
+```
+
+To execute tests:
+```
+python3.9 tests/test.py 
 ```
 
 Turing_Simulator:
 
 ```
 cd ./Turing_Simulator
-pip3.6 install -r requirements.txt
-python3.6 MEF.py
+python3.9 setup.py install --prefix="/home/{verify the path}"
+python3.9 src/__init__.py
+```
+
+To execute tests:
+```
+python3.9 tests/test.py 
 ```
