@@ -13,7 +13,18 @@ git clone https://github.com/joaovitor32/Linguagens-Formais-e-Automatos
 cd ./formal-languages-and-automata-
 ```
 
-MEF:
+## Demo
+
+```
+Para fazer uso dos códigos é preciso especificar as quádruplas  ou quintuplas
+de cada máquina no arquivo .ods respectivo
+```
+
+![mef](demo/mef.png)
+![turing](demo/mef.png)
+
+
+<strong>MEF:</strong>
 
 ```
 cd ./MEF
@@ -21,12 +32,12 @@ python3.9 setup.py install --prefix="/home/{verify the path}"
 python3.9 src/__init__.py
 ```
 
-To execute tests:
+<strong>To execute tests:</strong>
 ```
 python3.9 tests/test.py 
 ```
 
-Turing_Simulator:
+<strong>Turing_Simulator:</strong>
 
 ```
 cd ./Turing_Simulator
@@ -34,7 +45,7 @@ python3.9 setup.py install --prefix="/home/{verify the path}"
 python3.9 src/__init__.py
 ```
 
-To execute tests:
+<strong>To execute tests:</strong>
 ```
 python3.9 tests/test.py 
 ```
