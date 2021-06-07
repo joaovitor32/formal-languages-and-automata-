@@ -17,13 +17,13 @@ cd ./formal-languages-and-automata-
 
 ```
 Para fazer uso dos códigos é preciso especificar as quádruplas  ou quintuplas
-de cada máquina no arquivo .ods respectivo
+de cada máquina no arquivo .ods respectivos
 ```
 
 
-<img src="/demo/mef.png" width="100" />
+<img src="/demo/mef.png" />
 <br>
-<img src="/demo/turing.png" width="100" />
+<img src="/demo/turing.png" />
 
 <strong>MEF:</strong>
 
