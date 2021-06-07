@@ -21,10 +21,9 @@ de cada máquina no arquivo .ods respectivo
 ```
 
 
-![mef](demo/mef.png)
+<img src="/demo/mef.png" width="100" />
 <br>
-![turing](demo/turing.png)
-
+<img src="/demo/turing.png" width="100" />
 
 <strong>MEF:</strong>
 
