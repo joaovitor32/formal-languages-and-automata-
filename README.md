@@ -20,7 +20,9 @@ Para fazer uso dos códigos é preciso especificar as quádruplas  ou quintuplas
 de cada máquina no arquivo .ods respectivo
 ```
 
+
 ![mef](demo/mef.png)
+<br>
 ![turing](demo/turing.png)
 
 
