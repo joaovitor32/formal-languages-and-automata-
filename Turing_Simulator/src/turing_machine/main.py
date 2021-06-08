@@ -54,12 +54,12 @@ class Turing_Simulator:
 
             head = self.transition_function(inp,next_state)
 
-            if current.get_prox() == final_blank and i != 0:
+            if current.get_prox() == final_blank:
                 new_end_cell = self.tape.create_cell(current,final_blank,None)
                 current.set_prox(new_end_cell)
                 final_blank.set_previous(new_end_cell)
             
-            if current.get_previous() == initial_blank:
+            if current.get_previous() == initial_blank and i != 0:
                 new_start_cell =  self.tape.create_cell(initial_blank,current,None)
                 current.set_previous(new_start_cell)
                 initial_blank.set_previous(new_start_cell)
