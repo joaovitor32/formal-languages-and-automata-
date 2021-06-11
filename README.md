@@ -29,7 +29,7 @@ de cada máquina no arquivo .ods respectivos
 
 ```
 cd ./MEF
-python3.9 setup.py install --prefix="/home/{verify the path}"
+python3.9 setup.py install --prefix="/home/{verify the path}
 python3.9 src/__init__.py
 ```
 
@@ -42,7 +42,7 @@ python3.9 tests/test.py
 
 ```
 cd ./Turing_Simulator
-python3.9 setup.py install --prefix="/home/{verify the path}"
+python3.9 setup.py install --prefix="/home/{verify the path}
 python3.9 src/__init__.py
 ```
 
