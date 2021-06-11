@@ -12,4 +12,4 @@ https://pt.stackoverflow.com/questions/158043/o-que-%C3%A9-a-m%C3%A1quina-de-tur
 if __name__=="__main__":    
     quintuples = pd.read_excel('./data/Turing.ods', engine='odf') 
     Turing = Turing_Simulator(Quintuple,Tape,Cell,quintuples)
-    Turing.start()
+    Turing._start()

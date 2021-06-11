@@ -4,20 +4,20 @@ class Cell:
         self.previous = previous
         self.value = value
     
-    def get_value(self):
+    def _get_value(self):
         return self.value
 
-    def set_value(self,value):
+    def _set_value(self,value):
         self.value = value
 
-    def get_prox(self):
+    def _get_prox(self):
         return self.prox
     
-    def set_prox(self,prox):
+    def _set_prox(self,prox):
         self.prox =  prox
     
-    def get_previous(self):
+    def _get_previous(self):
         return self.previous
 
-    def set_previous(self,previous):
+    def _set_previous(self,previous):
         self.previous = previous

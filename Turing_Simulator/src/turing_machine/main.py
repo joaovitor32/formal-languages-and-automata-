@@ -15,70 +15,70 @@ class Turing_Simulator:
             self.quintuples.append(quintuple)
 
     #Function to check if state exists
-    def check_existence(self,state):
-        return [j for j in self.quintuples if (j.get_state() == state)]
+    def _check_existence(self,state):
+        return [j for j in self.quintuples if (j._get_state() == state)]
 
     #Function to pick an quintuple from quintuples list
-    def transition_function(self,inp,state):
+    def _transition_function(self,inp,state):
         try:
-            return [j for j in self.quintuples if (str(j.get_state()) == state and str(j.get_input()) == str(inp))][0]
+            return [j for j in self.quintuples if (str(j._get_state()) == state and str(j._get_input()) == str(inp))][0]
         except ValueError:
             print("Estado não encontrado na lista de Quintuplas")
 
 
     #Function to show Tape
-    def show_tape(self,initial,final):
+    def _show_tape(self,initial,final):
         output = "Tape: Primeira Célula ->"
         while initial is not final:
-            output+=str(initial.get_value())
-            initial = initial.get_prox()
+            output+=str(initial._get_value())
+            initial = initial._get_prox()
         print(output)
 
     #Function to give response after a tape is fullfiled
     #tape_cell.set_value does not work e tem algum erro 
-    def execute(self,initial_state,input_string,stopping_criterion):
-        i = 0
+    def _execute(self,initial_state,input_string,stopping_criterion):
+        counter = 0
 
-        initial_blank, final_blank = self.tape.start_tape(input_string)
+        initial_blank, final_blank = self.tape._start_tape(input_string)
 
         quintuples_route = []
-        tape_cell = initial_blank.get_prox()
+        tape_cell = initial_blank._get_prox()
         current = tape_cell
     
         next_state = initial_state
 
         # None = blank, ou seja espaços brancos da memória
-        while i < stopping_criterion: 
+        while counter < stopping_criterion: 
             
-            inp = current.get_value()
+            inp = current._get_value()
 
-            head = self.transition_function(inp,next_state)
+            head = self._transition_function(inp,next_state)
 
-            if current.get_prox() == final_blank:
-                new_end_cell = self.tape.create_cell(current,final_blank,None)
-                current.set_prox(new_end_cell)
-                final_blank.set_previous(new_end_cell)
+            if current._get_prox() == final_blank:
+                new_end_cell = self.tape._create_cell(current,final_blank,None)
+                current._set_prox(new_end_cell)
+                final_blank._set_previous(new_end_cell)
             
-            if current.get_previous() == initial_blank and i != 0:
-                new_start_cell =  self.tape.create_cell(initial_blank,current,None)
-                current.set_previous(new_start_cell)
-                initial_blank.set_previous(new_start_cell)
+            if current._get_previous() == initial_blank and counter != 0:
+                new_start_cell =  self.tape._create_cell(initial_blank,current,None)
+                current._set_previous(new_start_cell)
+                initial_blank._set_previous(new_start_cell)
 
-            current.set_value(head.get_output())
+            current._set_value(head._get_output())
 
-            if head.get_direction() == "R":              
-                current = current.get_prox()
-            elif head.get_direction() == "L":
-                current = current.get_previous()
+            if head._get_direction() == "R":              
+                current = current._get_prox()
+            elif head._get_direction() == "L":
+                current = current._get_previous()
 
-            next_state = head.get_prox()
+            next_state = head._get_prox()
 
-            i=i+1
+            counter = counter + 1
 
-        self.show_tape(tape_cell,final_blank.get_previous())
+        self._show_tape(tape_cell,final_blank._get_previous())
 
     #Function to start application - get Initial State and Input string
-    def start(self): 
+    def _start(self): 
         main=True
         options = [['Sim',True],['Não',False]]
         stopping_criterion = 0
@@ -93,7 +93,7 @@ class Turing_Simulator:
         
                 initial_state =  input('Initial state:')    
                 input_string = input('Input string:')
-                self.execute(initial_state,input_string,stopping_criterion)
+                self._execute(initial_state,input_string,stopping_criterion)
 
             except KeyboardInterrupt:
                 print("\n Algm erro aparentemente aconteceu")

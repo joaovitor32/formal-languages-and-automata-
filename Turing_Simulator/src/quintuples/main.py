@@ -6,17 +6,17 @@ class Quintuple:
         self.prox = prox
         self.direction = direction
  
-    def get_state(self):
+    def _get_state(self):
         return self.state
 
-    def get_input(self):
+    def _get_input(self):
         return self.inp
 
-    def get_prox(self):
+    def _get_prox(self):
         return self.prox
 
-    def get_output(self):
+    def _get_output(self):
         return self.output
 
-    def get_direction(self):
+    def _get_direction(self):
         return self.direction
