@@ -26,4 +26,4 @@ if __name__=="__main__":
 
     states = pd.read_excel('./data/MEF.ods', engine='odf')
     MEF = Finite_State_Machine(State,states)
-    MEF.start() 
+    MEF._start() 

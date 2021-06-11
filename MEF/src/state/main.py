@@ -4,11 +4,11 @@ class State:
         self.output = output
         self.transitions = [input0,input1]
 
-    def get_state(self):
+    def _get_state(self):
         return self.state
     
-    def get_transitions(self):
+    def _get_transitions(self):
         return self.transitions
     
-    def get_output(self):
+    def _get_output(self):
         return str(self.output)
