@@ -1,32 +1,40 @@
 import inquirer
+import sys
 
 class Turing_Simulator:
     def __init__(self,Quintuple,Tape,Cell,quintuples):
         self.quintuples = [] 
         self.tape = Tape(Cell)
         for row in quintuples.iterrows():
-            quintuple = Quintuple(
+            self.quintuples.append(Quintuple(
                 row[1]['state'],
                 row[1]['input'],
                 row[1]['output'],
                 row[1]['next'],
                 row[1]['direction'],
-            )
-            self.quintuples.append(quintuple)
+            ))
 
-    #Function to check if state exists
+    '''
+        Function to check if state exists
+    '''
     def _check_existence(self,state):
         return [j for j in self.quintuples if (j._get_state() == state)]
 
-    #Function to pick an quintuple from quintuples list
+    
+    '''
+        Function to pick an quintuple from quintuples list
+    '''
     def _transition_function(self,inp,state):
-        try:
-            return [j for j in self.quintuples if (str(j._get_state()) == state and str(j._get_input()) == str(inp))][0]
+        try:     
+            return [j for j in self.quintuples if (j._get_state() == state and str(j._get_input()) == str(inp))][0]
         except ValueError:
-            print("Estado não encontrado na lista de Quintuplas")
+            print("\nString não pode ser interpretada por está máquina... halt")
+            sys.exit(1)
 
 
-    #Function to show Tape
+    '''
+        Function to show Tape
+    '''
     def _show_tape(self,initial,final):
         output = "Tape: Primeira Célula ->"
         while initial is not final:
@@ -34,8 +42,9 @@ class Turing_Simulator:
             initial = initial._get_prox()
         print(output)
 
-    #Function to give response after a tape is fullfiled
-    #tape_cell.set_value does not work e tem algum erro 
+    '''
+        Function to give response after a tape is fullfiled
+    '''
     def _execute(self,initial_state,input_string,stopping_criterion):
         counter = 0
 
@@ -47,7 +56,9 @@ class Turing_Simulator:
     
         next_state = initial_state
 
-        # None = blank, ou seja espaços brancos da memória
+        '''
+            None = blank, ou seja espaços brancos da memória
+        '''
         while counter < stopping_criterion: 
             
             inp = current._get_value()
@@ -77,7 +88,9 @@ class Turing_Simulator:
 
         self._show_tape(tape_cell,final_blank._get_previous())
 
-    #Function to start application - get Initial State and Input string
+    '''
+        Function to start application - get Initial State and Input string
+    '''
     def _start(self): 
         main=True
         options = [['Sim',True],['Não',False]]
@@ -86,11 +99,11 @@ class Turing_Simulator:
             try:
                 question = [inquirer.List('prompt',message="Deseja continuar?",choices=[options[0][0],options[1][0]])]
                 main = options[[i[0] for i in options].index(inquirer.prompt(question)['prompt'])][1]
-                stopping_criterion = int(input("Insira o critério de parada:"))
 
                 if not main:
                     break
         
+                stopping_criterion = int(input("Insira o critério de parada:"))
                 initial_state =  input('Initial state:')    
                 input_string = input('Input string:')
                 self._execute(initial_state,input_string,stopping_criterion)
