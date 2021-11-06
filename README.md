@@ -1,4 +1,6 @@
-<h4>Códigos desenvolvidos para a matéria Linguagens Formais e Automatos</h4>
+<h4>Códigos desenvolvidos para a matéria Linguagens Formais e Automatos para a matéria de Linguagens Formais e Automatos do IPRJ ( Instituto Politécnico do Rio de Janeiro )
+
+</h4>
 <h3>Máquina de Estados Finitos e Simulador de Turing</h3>
 
 ##### Como Utilizar Este Repositório
